@@ -26,3 +26,13 @@
 ![kendaraan](https://drive.google.com/uc?export=download&id=1_5OT35b_izwJPJYBvW5Qca5fuj-wEIHF)
 ![kendaraan](https://drive.google.com/uc?export=download&id=1y9C1LTvZk2xq9O4hriW4QuIeikOX3jZQ)
 ![kendaraan](https://drive.google.com/uc?export=download&id=100ycDgbhNp-X6paEabAAQNeXxCFZ8pQ-)
+
+### Tabel Kwitansi
+![kwitansi](https://drive.google.com/uc?export=download&id=1CBceLMsLkZPZrNrPmuCt28z3GP024nCd)
+
+### Tabel Sewa
+![sewa](https://drive.google.com/uc?export=download&id=1aGF6WTVPz-u-HgjG8IQrKz1IBJVZCpmw)
+
+### Tabel Invoice
+![invoice](https://drive.google.com/uc?export=download&id=1Tp5K2022kH3FEzWNZhruhu4kkn6qVNzZ)
+![invoice](https://drive.google.com/uc?export=download&id=1AUVo9IIZV1JP_H6cGXVaf5mnZ2hY0r8b)
