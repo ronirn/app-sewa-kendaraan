@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Kwitansi;
+use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class KwitansiController extends Controller
 {
     public function index()
     {
-        $kwitanis = Kwitansi::all();
-        return view('kwitansi.index', compact('kwitanis'));
+        $kwitansis = Kwitansi::all();
+        return view('kwitansi.index', compact('kwitansis'));
     }
 
     public function create()
@@ -25,37 +26,44 @@ class KwitansiController extends Controller
         ]);
 
         Kwitansi::create($request->all());
-        return redirect()->route('kwitansi.index')->with('success', 'Kwitansi berhasil ditambahkan.');
+
+        // Menggunakan SweetAlert untuk notifikasi
+        Alert::success('Success', 'Kwitansi berhasil ditambahkan');
+
+        return redirect()->route('kwitansi.index');
     }
 
-    public function edit($id)
+    public function show(Kwitansi $kwitansi)
     {
-        $kwitansi = Kwitansi::findOrFail($id);
+        return view('kwitansi.show', compact('kwitansi'));
+    }
+
+    public function edit(Kwitansi $kwitansi)
+    {
         return view('kwitansi.edit', compact('kwitansi'));
     }
 
-    public function show($id)
-{
-    $kwitansi = Kwitansi::findOrFail($id);
-    return view('kwitansi.show', compact('kwitansi'));
-}
-
-
-    public function update(Request $request, $id)
+    public function update(Request $request, Kwitansi $kwitansi)
     {
         $request->validate([
             'tgl_transaksi' => 'required|date',
         ]);
 
-        $kwitansi = Kwitansi::findOrFail($id);
         $kwitansi->update($request->all());
-        return redirect()->route('kwitansi.index')->with('success', 'Kwitansi berhasil diperbarui.');
+
+        // Menggunakan SweetAlert untuk notifikasi
+        Alert::success('Success', 'Kwitansi berhasil diupdate');
+
+        return redirect()->route('kwitansi.index');
     }
 
-    public function destroy($id)
+    public function destroy(Kwitansi $kwitansi)
     {
-        $kwitansi = Kwitansi::findOrFail($id);
         $kwitansi->delete();
-        return redirect()->route('kwitansi.index')->with('success', 'Kwitansi berhasil dihapus.');
+
+        // Menggunakan SweetAlert untuk notifikasi
+        Alert::success('Success', 'Kwitansi berhasil dihapus');
+
+        return redirect()->route('kwitansi.index');
     }
 }

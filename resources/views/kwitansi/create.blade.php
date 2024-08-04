@@ -1,20 +1,54 @@
-@extends('layout.app')
+@extends('layouts.app')
 
 @section('content')
-<div class="container mx-auto px-4">
-   
+<div class="container">
+    <div class="row mb-4">
+        <div class="col-lg-12 d-flex justify-content-between align-items-center">
+            <h2>Add Receipt</h2>
+        </div>
+    </div>
 
-    <form action="{{ route('kwitansi.store') }}" method="POST" class="max-w-md mx-auto bg-white rounded-lg shadow-md p-8">
-    <h1 class="text-2xl font-bold mb-8 text-center">Buat Kwitansi Baru</h1>
-        @csrf
-        <div class="mb-6">
-            <label for="tgl_transaksi" class="block text-sm font-medium text-gray-700">Tanggal Transaksi</label>
-            <input type="date" name="tgl_transaksi" id="tgl_transaksi" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" required>
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <strong>Whoops!</strong> There were some problems with your input.<br><br>
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
         </div>
-        <div class="flex justify-between">
-            <button type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Simpan</button>
-            <a href="{{ route('kwitansi.index') }}" class="bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Batal</a>
+    @endif
+
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Receipt Form</h5>
+
+                    <!-- Vertical Form -->
+                    <form action="{{ route('kwitansi.store') }}" method="POST" class="row g-3">
+                        @csrf
+                        <div class="col-12">
+                            <label for="tgl_transaksi" class="form-label"><strong>Transaction Date:</strong></label>
+                            <input type="date" name="tgl_transaksi" class="form-control" id="tgl_transaksi" placeholder="Transaction Date" required>
+                        </div>
+                        <div class="text-center mt-3">
+                            <a class="btn btn-secondary" href="{{ route('kwitansi.index') }}">
+                                <i class="bi bi-arrow-left-circle"></i> Back
+                            </a>
+                            <button type="submit" class="btn btn-success">
+                                <i class="bi bi-check-circle"></i> Submit
+                            </button>
+                            <button type="reset" class="btn btn-light">
+                                <i class="bi bi-x-circle"></i> Reset
+                            </button>
+                        </div>
+                    </form>
+                    <!-- Vertical Form -->
+
+                </div>
+            </div>
         </div>
-    </form>
+    </div>
 </div>
 @endsection

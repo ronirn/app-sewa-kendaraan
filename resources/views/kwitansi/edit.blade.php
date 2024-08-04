@@ -1,20 +1,56 @@
-@extends('layout.app')
+@extends('layouts.app')
 
 @section('content')
-<div class="max-w-md mx-auto border mt-20">
-    <form action="{{ route('kwitansi.update', $kwitansi->id_kwitansi) }}" method="POST" class="bg-white shadow-md rounded px-8 py-6">
-        @csrf
-        @method('PUT')
+<div class="container">
+    <div class="row mb-4">
+        <div class="col-lg-12 d-flex justify-content-between align-items-center">
+            <h2>Edit Receipt</h2>
 
-        <div class="mb-4">
-            <label class="block text-gray-700 text-sm font-bold mb-2" for="tgl_transaksi">Tanggal Transaksi:</label>
-            <input type="date" name="tgl_transaksi" id="tgl_transaksi" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value="{{ $kwitansi->tgl_transaksi }}" required>
         </div>
+    </div>
 
-        <div class="flex items-center justify-between">
-            <a href="{{ route('kwitansi.index') }}" class="bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline inline-block align-baseline">Batal</a>
-            <button type="submit" class="bg-green-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Simpan</button>
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <strong>Whoops!</strong> There were some problems with your input.<br><br>
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
         </div>
-    </form>
+    @endif
+
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Edit Receipt Form</h5>
+
+                    <!-- Vertical Form -->
+                    <form action="{{ route('kwitansi.update', $kwitansi->id_kwitansi) }}" method="POST" class="row g-3">
+                        @csrf
+                        @method('PUT')
+                        <div class="col-12">
+                            <label for="tgl_transaksi" class="form-label"><strong>Transaction Date:</strong></label>
+                            <input type="date" name="tgl_transaksi" value="{{ $kwitansi->tgl_transaksi }}" class="form-control" id="tgl_transaksi" placeholder="Transaction Date" required>
+                        </div>
+                        <div class="text-center mt-3">
+                        <a class="btn btn-primary" href="{{ route('kwitansi.index') }}">
+                <i class="bi bi-arrow-left-circle"></i> Back
+            </a>
+                            <button type="submit" class="btn btn-success">
+                                <i class="bi bi-check-circle"></i> Submit
+                            </button>
+                            <button type="reset" class="btn btn-light">
+                                <i class="bi bi-x-circle"></i> Reset
+                            </button>
+                        </div>
+                    </form>
+                    <!-- Vertical Form -->
+
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 @endsection

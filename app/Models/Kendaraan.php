@@ -9,9 +9,9 @@ class Kendaraan extends Model
 {
     use HasFactory;
 
-    protected $table ='kendaraan';
-
-    protected $primaryKey = 'no_pol'; 
+    protected $table = 'kendaraan';
+    protected $primaryKey = 'no_pol';
+    public $incrementing = false;
 
     protected $fillable = [
         'no_pol',
@@ -21,4 +21,14 @@ class Kendaraan extends Model
         'merek',
         'kapasitas',
     ];
+
+    public function sewa()
+    {
+        return $this->hasMany(Sewa::class, 'no_pol');
+    }
+
+    public function invoice()
+    {
+        return $this->hasMany(Invoice::class, 'no_pol');
+    }
 }

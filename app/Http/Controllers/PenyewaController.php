@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Penyewa;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class PenyewaController extends Controller
 {
@@ -21,14 +22,17 @@ class PenyewaController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nama_penyewa' => 'required|string|max:100',
-            'alamat' => 'required|string',
-            'no_hp' => 'required|string|max:15',
+            'nama_penyewa' => 'required|max:100',
+            'alamat' => 'required',
+            'no_hp' => 'required|max:15',
         ]);
 
         Penyewa::create($request->all());
 
-        return redirect()->route('penyewa.index')->with('success', 'Penyewa berhasil ditambahkan.');
+        // Menggunakan SweetAlert untuk notifikasi
+        Alert::success('Success', 'Penyewa berhasil ditambahkan');
+
+        return redirect()->route('penyewa.index');
     }
 
     public function show(Penyewa $penyewa)
@@ -44,20 +48,26 @@ class PenyewaController extends Controller
     public function update(Request $request, Penyewa $penyewa)
     {
         $request->validate([
-            'nama_penyewa' => 'required|string|max:100',
-            'alamat' => 'required|string',
-            'no_hp' => 'required|string|max:15',
+            'nama_penyewa' => 'required|max:100',
+            'alamat' => 'required',
+            'no_hp' => 'required|max:15',
         ]);
 
         $penyewa->update($request->all());
 
-        return redirect()->route('penyewa.index')->with('success', 'Penyewa berhasil diperbarui.');
+        // Menggunakan SweetAlert untuk notifikasi
+        Alert::success('Success', 'Penyewa berhasil diupdate');
+
+        return redirect()->route('penyewa.index');
     }
 
     public function destroy(Penyewa $penyewa)
     {
         $penyewa->delete();
 
-        return redirect()->route('penyewa.index')->with('success', 'Penyewa berhasil dihapus.');
+        // Menggunakan SweetAlert untuk notifikasi
+        Alert::success('Success', 'Penyewa berhasil dihapus');
+
+        return redirect()->route('penyewa.index');
     }
 }
