@@ -10,5 +10,11 @@
 ![home](https://drive.google.com/uc?export=download&id=1zWX6Cyf8RQ98U_WKlxWeTpJXaooXEsQw)
 
 ### Login
+![login](https://drive.google.com/uc?export=download&id=1RHMdNCwocyhu-2lacS2hWbT_4BLFa5d5)
 
+### Registrasi
+![regis](https://drive.google.com/uc?export=download&id=14sN4icfLZQFQFZPdj7UpZwF6FLasalo3)
+
+### Dashboard
+![dash](https://drive.google.com/uc?export=download&id=1t_WbpqfhCF4OZwONyDIqwL3b1YL-9N_e)
 
